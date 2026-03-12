@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reparaciones Francisconi | Servicio Técnico</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --verde: #2ecc40;
+            --verde-dark: #1a7a25;
+            --negro: #0a0a0a;
+            --gris: #1a1a1a;
+            --blanco: #f5f5f5;
+            --accent: #39ff14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--negro);
+            color: var(--blanco);
+            font-family: 'Barlow', sans-serif;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(46, 204, 64, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            border-radius: 4px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--blanco);
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--verde);
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: rgba(245, 245, 245, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        nav ul a:hover {
+            color: var(--verde);
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
+        .nav-wa-mobile {
+            display: none;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .nav-cta {
+            background: var(--verde);
+            color: var(--negro) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 700 !important;
+            transition: background 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent) !important;
+            color: var(--negro) !important;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 70% 50%, rgba(46, 204, 64, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 30% 40% at 20% 20%, rgba(46, 204, 64, 0.06) 0%, transparent 60%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(46, 204, 64, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 204, 64, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(46, 204, 64, 0.1);
+            border: 1px solid rgba(46, 204, 64, 0.3);
+            padding: 0.3rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--verde);
+            margin-bottom: 1.2rem;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .hero-tag .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: 2px;
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        .hero h1 .verde {
+            color: var(--verde);
+        }
+
+        .hero h1 .outline {
+            -webkit-text-stroke: 2px var(--blanco);
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: rgba(245, 245, 245, 0.65);
+            line-height: 1.7;
+            margin: 1.2rem 0 2rem;
+            max-width: 420px;
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--verde);
+            color: var(--negro);
+            padding: 0.85rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 0 20px rgba(46, 204, 64, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(245, 245, 245, 0.25);
+            color: var(--blanco);
+            padding: 0.85rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--verde);
+            color: var(--verde);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeUp 0.6s 0.4s ease both;
+        }
+
+        .hero-card {
+            background: var(--gris);
+            border: 1px solid rgba(46, 204, 64, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--verde), var(--accent), var(--verde));
+            background-size: 200%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 200%;
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            background: rgba(46, 204, 64, 0.05);
+            border: 1px solid rgba(46, 204, 64, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--verde);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            color: rgba(245, 245, 245, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.2rem;
+        }
+
+        .avail-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(46, 204, 64, 0.08);
+            border: 1px solid rgba(46, 204, 64, 0.2);
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+        }
+
+        .avail-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .avail-text {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--verde);
+        }
+
+        .avail-sub {
+            font-size: 0.72rem;
+            color: rgba(245, 245, 245, 0.4);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--verde);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .section-title .outline {
+            -webkit-text-stroke: 1.5px rgba(245, 245, 245, 0.3);
+            color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--gris);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--verde);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: rgba(46, 204, 64, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--blanco);
+        }
+
+        .service-desc {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 245, 0.5);
+            line-height: 1.6;
+        }
+
+        .why-section {
+            background: var(--gris);
+            padding: 6rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .why-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .why-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .why-check {
+            width: 24px;
+            height: 24px;
+            background: rgba(46, 204, 64, 0.15);
+            border: 1px solid rgba(46, 204, 64, 0.4);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--verde);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .why-text strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .why-text span {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 245, 0.5);
+        }
+
+        .why-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .highlight-box {
+            background: var(--negro);
+            border: 1px solid rgba(46, 204, 64, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .hl-icon {
+            font-size: 2rem;
+        }
+
+        .hl-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--verde);
+            line-height: 1;
+        }
+
+        .hl-label {
+            font-size: 0.78rem;
+            color: rgba(245, 245, 245, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: var(--gris);
+            border: 1px solid rgba(46, 204, 64, 0.15);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 50% 80% at 50% 100%, rgba(46, 204, 64, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-card h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: rgba(245, 245, 245, 0.55);
+            max-width: 400px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .contact-options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-whatsapp {
+            background: #25d366;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .contact-whatsapp:hover {
+            box-shadow: 0 0 50px rgba(37, 211, 102, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .contact-ig {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: #fff;
+        }
+
+        .contact-ig:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            color: var(--verde);
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.78rem;
+            color: rgba(245, 245, 245, 0.3);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: none;
+            }
+
+            .nav-wa-mobile {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 5rem;
+                padding-bottom: 2rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 12vw, 4.5rem);
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .why-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-header {
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 3rem 1.5rem;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#" class="logo">
+            <img src="Logo/logo.jpg" alt="Logo Reparaciones Francisconi" class="logo-img">
+            <div class="logo-text">
+                Reparaciones Francisconi
+                <span>Servicio Técnico</span>
+            </div>
+        </a>
+        <a href="https://wa.me/541130288790" target="_blank" class="nav-wa-mobile">
+            💬 WA
+        </a>
+        <ul>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto" class="nav-cta">Contactar</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div>
+                <div class="hero-tag">
+                    <span class="dot"></span>
+                    Disponible 24/7
+                </div>
+                <h1>
+                    <span class="verde">Servicio</span><br>
+                    <span class="outline">Técnico</span><br>
+                    Profesional
+                </h1>
+                <p>Reparación y mantenimiento de electrodomésticos. Rápido, confiable y con garantía. ¡Tu consulta no
+                    molesta!</p>
+                <div class="hero-btns">
+                    <a href="https://wa.me/541130288790" target="_blank" class="btn-primary">
+                        💬 WhatsApp
+                    </a>
+                    <a href="#servicios" class="btn-secondary">
+                        Ver servicios →
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-num">24/7</div>
+                            <div class="stat-label">Disponibilidad</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">100%</div>
+                            <div class="stat-label">Dedicación</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">⚡</div>
+                            <div class="stat-label">Respuesta rápida</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-num">✓</div>
+                            <div class="stat-label">Con garantía</div>
+                        </div>
+                    </div>
+                    <div class="avail-badge">
+                        <span class="avail-dot"></span>
+                        <div>
+                            <div class="avail-text">Estamos trabajando ahora</div>
+                            <div class="avail-sub">Respondemos en minutos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="servicios">
+        <div class="section-header reveal">
+            <div class="section-tag">// Lo que hacemos</div>
+            <h2 class="section-title">Nuestros <span class="outline">Servicios</span></h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <span class="service-icon">🌀</span>
+                <div class="service-name">Lavarropas</div>
+                <p class="service-desc">Reparación de todo tipo: no centrifuga, pérdidas de agua, problemas eléctricos y
+                    más.</p>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">❄️</span>
+                <div class="service-name">Heladeras</div>
+                <p class="service-desc">No enfría, hace ruido, pérdidas de gas. Diagnóstico y reparación en el acto.</p>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🌬️</span>
+                <div class="service-name">Ventiladores</div>
+                <p class="service-desc">Mantenimiento, cambio de capacitores y reparación eléctrica de ventiladores de
+                    todo tipo.</p>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🍳</span>
+                <div class="service-name">Cocinas y hornos</div>
+                <p class="service-desc">No enciende, falla de termostato, problemas de gas. Revisión completa.</p>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🔧</span>
+                <div class="service-name">Otros electrodomésticos</div>
+                <p class="service-desc">Microondas, planchas, aspiradoras y mucho más. Preguntá sin compromiso.</p>
+            </div>
+            <div class="service-card reveal">
+                <span class="service-icon">🛠️</span>
+                <div class="service-name">Mantenimiento preventivo</div>
+                <p class="service-desc">Revisión y limpieza para prevenir fallas. Que te duren muchos años más.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="why-section" id="nosotros">
+        <div class="why-inner">
+            <div class="reveal">
+                <div class="section-tag">// Por qué elegirnos</div>
+                <h2 class="section-title">Trabajo con <span class="verde">pasión</span> y compromiso</h2>
+                <ul class="why-list">
+                    <li class="why-item">
+                        <div class="why-check">✓</div>
+                        <div class="why-text">
+                            <strong>Atención personalizada</strong>
+                            <span>Hablás directo con quien te va a reparar el artefacto.</span>
+                        </div>
+                    </li>
+                    <li class="why-item">
+                        <div class="why-check">✓</div>
+                        <div class="why-text">
+                            <strong>Presupuesto sin cargo</strong>
+                            <span>Consultá sin compromiso, tu consulta no molesta.</span>
+                        </div>
+                    </li>
+                    <li class="why-item">
+                        <div class="why-check">✓</div>
+                        <div class="why-text">
+                            <strong>Rapidez y puntualidad</strong>
+                            <span>Respondemos y trabajamos rápido para que no pierdas tiempo.</span>
+                        </div>
+                    </li>
+                    <li class="why-item">
+                        <div class="why-check">✓</div>
+                        <div class="why-text">
+                            <strong>Servicio 24/7</strong>
+                            <span>Estamos disponibles todos los días, a cualquier hora.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-visual reveal">
+                <div class="highlight-box">
+                    <span class="hl-icon">📱</span>
+                    <div>
+                        <div class="hl-num">WhatsApp</div>
+                        <div class="hl-label">Contacto directo</div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <span class="hl-icon">⚡</span>
+                    <div>
+                        <div class="hl-num">Diagnóstico rápido</div>
+                        <div class="hl-label">Sin vueltas ni demoras</div>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <span class="hl-icon">💰</span>
+                    <div>
+                        <div class="hl-num">Precios justos</div>
+                        <div class="hl-label">Calidad sin pagar de más</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact-section" id="contacto">
+        <div class="contact-card reveal">
+            <h2>¿Necesitás una <span style="color:var(--verde)">reparación</span>?</h2>
+            <p>Escribinos por WhatsApp o seguinos en Instagram. Tu consulta no molesta — ¡estamos para ayudarte!</p>
+            <div class="contact-options">
+                <a href="https://wa.me/541130288790" target="_blank" class="contact-btn contact-whatsapp">
+                    💬 Escribir por WhatsApp
+                </a>
+                <a href="https://instagram.com/reparaciones.francisconi" target="_blank" class="contact-btn contact-ig">
+                    📸 Ver en Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Reparaciones Francisconi</div>
+        <p>Mantenimiento y reparación de electrodomésticos · (54) 1130288790</p>
+        <p style="margin-top:0.3rem">Zona Buenos Aires, Argentina</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
